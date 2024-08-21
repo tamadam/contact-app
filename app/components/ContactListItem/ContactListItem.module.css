@@ -1,0 +1,42 @@
+.contactItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.contactInfo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.contactImage {
+    border-radius: 50%;
+}
+
+.contactDetails > * {
+    display: grid;
+    gap: 0.1em;
+}
+
+.contactName {
+    color: var(--clr-text-100);
+}
+
+.contactPhone {
+    color: var(--clr-text-56);
+}
+
+.contactActions {
+    display: flex;
+    gap: 0.2em;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease;
+}
+
+.contactItem:hover .contactActions {
+    visibility: visible;
+    opacity: 1;
+}

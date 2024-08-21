@@ -1,4 +1,5 @@
 import Button from "../components/Button/Button";
+import ContactListItem from "../components/ContactListItem/ContactListItem";
 import styles from "./page.module.css";
 import Image from "next/image";
 
@@ -94,18 +95,12 @@ export default function ContactsPage() {
         </div>
       </div>
       <div className={styles.contactsContent}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, sunt
-        esse, facilis quaerat, distinctio doloremque voluptatibus ipsam fuga at
-        eum eveniet soluta dignissimos? Tempora quaerat omnis natus accusantium
-        aut distinctio provident, ab architecto labore a veniam culpa pariatur
-        modi, cumque molestiae minus. In neque nemo cumque sint repellat, totam
-        debitis iusto perferendis obcaecati ipsa ratione cum, officiis qui
-        aspernatur? Inventore id laudantium cumque necessitatibus quaerat
-        perferendis, aperiam temporibus consectetur rerum eligendi magni fugit
-        repudiandae laborum voluptates incidunt ab at minus repellendus eius
-        natus molestias. Aspernatur harum eius deleniti est iste molestiae
-        blanditiis numquam. Animi maiores sit quo, quam illum, aspernatur
-        laborum quas libero officiis saepe optio cumque sint magni tempore
+        <div className={styles.contactList}>
+          <ContactListItem contactName="Test User" contactPhone="12345" />
+          <ContactListItem contactName="Test User2" contactPhone="12345" />
+          <ContactListItem contactName="Test User3" contactPhone="12345" />
+          <ContactListItem contactName="Test User4" contactPhone="12345" />
+        </div>
       </div>
     </main>
   );

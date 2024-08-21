@@ -33,7 +33,7 @@
 
   --page-section-height: 10.6vh;
   --page-section-height-min: 96px;
-  --inline-space: 25dvw;
+  --inline-space: 20dvw;
   --header-height: calc(2 * max(var(--page-section-height), var(--page-section-height-min)));
 
 }
