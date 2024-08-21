@@ -1,0 +1,71 @@
+.contactsWrapper {
+    display: grid;
+    grid-template-areas: "mid";
+    background-color: var(--clr-primary-100);
+
+    --border-clr: var(--clr-primary-60);
+}
+
+.contactsHeader {
+    grid-area: mid;
+    width: 100%;
+
+    display: grid;
+    grid-template-areas: "back title title lightdark"
+    "options options options options";
+    grid-template-rows: 1fr 1fr;
+    height: var(--header-height);
+}
+
+.headerItem:nth-child(3) {
+    border-top: 1px solid var(--border-clr);
+    border-bottom: 1px solid var(--border-clr);
+}
+
+
+.contactsContent {
+    --padding-top: 1em;
+    grid-area: mid;
+
+    display: grid;
+    min-height: 100svh;
+    margin-inline: 1em;
+    padding-top: calc(var(--padding-top) + 2 * max(var(--page-section-height), var(--page-section-height-min)));
+    padding-bottom: 2em;
+}
+
+.headerBackButton {
+    grid-area: back;
+    justify-self: end;
+}
+
+.headerText {
+    grid-area: title;
+}
+
+.headerOptions {
+    grid-area: options;
+}
+
+.headerLightDark {
+    grid-area: lightdark;
+}
+
+@media (min-width: 50rem) {
+    .contactsHeader {
+        grid-template-areas: ". . . ."
+        "back title options lightdark";
+        grid-template-columns: var(--inline-space) auto 1fr var(--inline-space);
+    }
+
+    .headerItem {
+        border-top: 1px solid var(--border-clr);
+        border-bottom: 1px solid var(--border-clr);
+    }
+
+    .contactsContent {
+        margin-inline: var(--inline-space);
+        border-left: 1px solid var(--border-clr);
+        border-right: 1px solid var(--border-clr);
+    }
+}

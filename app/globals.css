@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Glysa";
+  src: url("../fonts/Glysa.otf");
+}
+
+@font-face {
+  font-family: "LexendDeca";
+  src: url("../fonts/LexendDeca-VariableFont_wght.ttf");
+}
+
+:root {
+
+  /* COLORS */
+  --clr-primary-100: #141414;
+  --clr-primary-90: #191919;
+  --clr-primary-80: #1E1E1E;
+  --clr-primary-70: #232323;
+  --clr-primary-60: #282828;
+  --clr-primary-50: #2D2D2D;
+  --clr-primary-40: #323232;
+  --clr-primary-30: #373737;
+  --clr-primary-20: #3C3C3C;
+  --clr-primary-10: #414141;
+
+  --clr-text-100: #FFFFFF;
+  --clr-text-56: #ffffff8f;
+  --clr-text-32: #ffffff52;
+
+
+  --page-section-height: 10.6vh;
+  --page-section-height-min: 96px;
+  --inline-space: 25dvw;
+  --header-height: calc(2 * max(var(--page-section-height), var(--page-section-height-min)));
+
+}
+
+
+
 /* BASIC CSS RESET */
 
 *, *::before, *::after {
@@ -12,10 +50,6 @@
   padding: 0;
   margin: 0;
   font: inherit;
-}
-
-body {
-  min-height: 100svh;
 }
 
 img, picture, video {
