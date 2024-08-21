@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* BASIC CSS RESET */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+}
+
+body {
+  min-height: 100svh;
+}
+
+img, picture, video {
+  display: block;
+  max-width: 100%;
+}
+
+input, textarea, select {
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button {
+  all: unset;
+  font: inherit;
+  cursor: pointer;
+}
+
+hr {
+  border: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :has(:target) {
+      scroll-behavior: smooth;
+  }
+}
