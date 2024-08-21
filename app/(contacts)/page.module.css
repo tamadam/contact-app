@@ -1,9 +1,11 @@
 .contactsWrapper {
     display: grid;
     grid-template-areas: "mid";
+    font-family: "LexendDeca", sans-serif;
     background-color: var(--clr-primary-100);
 
     --border-clr: var(--clr-primary-60);
+    --inline-content-padding: 1.4rem;
 }
 
 .contactsHeader {
@@ -13,8 +15,15 @@
     display: grid;
     grid-template-areas: "back title title lightdark"
     "options options options options";
+
     grid-template-rows: 1fr 1fr;
     height: var(--header-height);
+    z-index: 10;
+}
+
+.headerItem {
+    display: flex;
+    align-items: center;
 }
 
 .headerItem:nth-child(3) {
@@ -32,26 +41,35 @@
     margin-inline: 1em;
     padding-top: calc(var(--padding-top) + 2 * max(var(--page-section-height), var(--page-section-height-min)));
     padding-bottom: 2em;
+    padding-inline: var(--inline-content-padding);
+    text-wrap: balance;
+    color: var(--clr-text-100);
 }
 
 .headerBackButton {
     grid-area: back;
-    justify-self: end;
+    justify-content: end;
 }
 
 .headerText {
     grid-area: title;
+    font-family: "Glysa", sans-serif;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .headerOptions {
     grid-area: options;
+    justify-content: space-around;
+    gap: 1em;
 }
 
 .headerLightDark {
     grid-area: lightdark;
+    justify-content: start;
 }
 
-@media (min-width: 50rem) {
+@media (min-width: 60rem) {
     .contactsHeader {
         grid-template-areas: ". . . ."
         "back title options lightdark";
@@ -61,6 +79,16 @@
     .headerItem {
         border-top: 1px solid var(--border-clr);
         border-bottom: 1px solid var(--border-clr);
+        padding: var(--inline-content-padding);
+    }
+
+    .headerItem:first-child,
+    .headerItem:last-child {
+        padding: 2rem;
+    }
+
+    .headerOptions {
+        justify-content: end;
     }
 
     .contactsContent {

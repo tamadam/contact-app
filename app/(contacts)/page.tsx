@@ -1,3 +1,4 @@
+import Button from "../components/Button/Button";
 import styles from "./page.module.css";
 import Image from "next/image";
 
@@ -12,7 +13,7 @@ export default function ContactsPage() {
             "text-cyan-50",
           ].join(" ")}
         >
-          <button>
+          <Button variant="secondary">
             <Image
               src="/backButton.svg"
               alt="back button"
@@ -20,7 +21,7 @@ export default function ContactsPage() {
               height={24}
               priority
             />
-          </button>
+          </Button>
         </div>
         <div
           className={[
@@ -40,31 +41,38 @@ export default function ContactsPage() {
           ].join(" ")}
         >
           <div className="settings">
-            <Image
-              src="/settings.svg"
-              alt="settings"
-              width={24}
-              height={24}
-              priority
-            />
+            <Button variant="secondary">
+              <Image
+                src="/settings.svg"
+                alt="settings"
+                width={24}
+                height={24}
+                priority
+              />
+            </Button>
           </div>
           <div className="profile">
-            <Image
-              src="/profile.svg"
-              alt="profile picture"
-              width={24}
-              height={24}
-              priority
-            />
+            <Button variant="secondary">
+              <Image
+                src="/profile.svg"
+                alt="profile picture"
+                width={24}
+                height={24}
+                priority
+              />
+            </Button>
           </div>
           <div className="addButton">
-            <Image
-              src="/add.svg"
-              alt="plus sign"
-              width={24}
-              height={24}
-              priority
-            />
+            <Button variant="priority">
+              <Image
+                src="/add.svg"
+                alt="plus sign"
+                width={24}
+                height={24}
+                priority
+              />
+              Add new
+            </Button>
           </div>
         </div>
         <div
@@ -74,13 +82,15 @@ export default function ContactsPage() {
             "text-cyan-50",
           ].join(" ")}
         >
-          <Image
-            src="/colorSwitch.svg"
-            alt="color switch"
-            width={24}
-            height={24}
-            priority
-          />
+          <Button variant="secondary">
+            <Image
+              src="/colorSwitch.svg"
+              alt="color switch"
+              width={24}
+              height={24}
+              priority
+            />
+          </Button>
         </div>
       </div>
       <div className={styles.contactsContent}>

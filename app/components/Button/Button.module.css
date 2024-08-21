@@ -1,0 +1,77 @@
+.button {
+    --button-primary-bg: var(--clr-primary-60);
+    --button-primary-hover-bg: var(--clr-primary-50);
+    --button-primary-active-bg: var(--clr-primary-40);
+
+    --button-secondary-bg: rgba(0,0,0,0);
+
+    --button-secondary-hover-bg: var(--clr-primary-90);
+    --button-secondary-active-bg: var(--clr-primary-80);
+
+
+    --button-linear-gradient-hover: linear-gradient(0deg, #141414, #141414),
+    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+    
+    --button-linear-gradient-active: linear-gradient(0deg, #141414, #141414),
+    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+    
+    
+
+    cursor: pointer;
+    transition: background-color 0.125s linear;
+    padding: 0.6em 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    border-radius: 0.5em;
+}
+
+.button.priority {
+    background: 
+    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), 
+    linear-gradient(0deg, #141414, #141414);
+
+    border: 1px solid var(--clr-primary-20);
+    border-radius: 20em;
+    
+}
+
+.button.priority:hover {
+    background: 
+    linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), 
+    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), 
+    linear-gradient(0deg, #141414, #141414); 
+}
+
+.button.priority:active {
+    background: 
+    linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), 
+    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), 
+    linear-gradient(0deg, #141414, #141414); 
+}
+
+.button.primary {
+    background-color: var(--button-primary-bg);
+}
+
+.button.primary:hover {
+    background-color: var(--button-primary-hover-bg);
+}
+
+.button.primary:active {
+    background-color: var(--button-primary-active-bg);
+}
+
+.button.secondary {
+    background-color: var(--button-secondary-bg);
+}
+
+.button.secondary:hover {
+    background-color: var(--button-secondary-hover-bg);
+}
+
+.button.secondary:active {
+    background-color: var(--button-secondary-active-bg);
+}
