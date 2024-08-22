@@ -4,7 +4,9 @@ import { useRef } from "react";
 import styles from "./ContactForm.module.css";
 import Image from "next/image";
 import Button from "../Button/Button";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ContactFormFields, contactFormSchema } from "@/app/validationSchemas";
 
 const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
@@ -18,9 +20,11 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm<ContactFormFields>({
+    resolver: zodResolver(contactFormSchema),
+  });
 
-  const onSubmit = async (data: FieldValues) => {
+  const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
     // TODO: submit to server
     console.log("submitting");
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -68,10 +72,14 @@ const ContactForm = () => {
               <input
                 {...register("name")}
                 type="text"
+                id="name"
                 placeholder="Jamie Wright"
                 className={styles.inputField}
                 disabled={isSubmitting}
               />
+              {errors.name && (
+                <p className="text-red-500 mt-1">{errors.name?.message}</p>
+              )}
             </div>
             <div className={styles.inputFieldWrapper}>
               <label htmlFor="phone" className={styles.inputLabel}>
@@ -80,10 +88,14 @@ const ContactForm = () => {
               <input
                 {...register("phone")}
                 type="text"
+                id="phone"
                 placeholder="+01 234 5678"
                 className={styles.inputField}
                 disabled={isSubmitting}
               />
+              {errors.phone && (
+                <p className="text-red-500 mt-1">{errors.phone?.message}</p>
+              )}
             </div>
             <div className={styles.inputFieldWrapper}>
               <label htmlFor="email" className={styles.inputLabel}>
@@ -92,10 +104,14 @@ const ContactForm = () => {
               <input
                 {...register("email")}
                 type="text"
+                id="email"
                 placeholder="jamie.wright@mail.com"
                 className={styles.inputField}
                 disabled={isSubmitting}
               />
+              {errors.email && (
+                <p className="text-red-500 mt-1">{errors.email?.message}</p>
+              )}
             </div>
           </div>
           <div className={styles.formActionButtonsWrapper}>
