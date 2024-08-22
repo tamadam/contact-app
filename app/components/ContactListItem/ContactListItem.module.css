@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    position: relative;
 }
 
 .contactInfo {
@@ -36,7 +37,24 @@
     transition: visibility 0s, opacity 0.5s ease;
 }
 
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
 .contactItem:hover .contactActions {
     visibility: visible;
     opacity: 1;
+}
+
+@media (max-width: 60rem) {
+    .hideMobile {
+        display: none;
+    }
+
+    .contactActions {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+    }
 }

@@ -1,0 +1,29 @@
+.dropdownWrapper {
+    --popup-width: 219px;
+    z-index: 20;
+    position: absolute;
+    left: calc(100% - 40px);
+    top: 100%;
+    width: var(--popup-width);
+    background: var(--clr-primary-80);
+    border-radius: 0.5em;
+    box-sizing: border-box;
+}
+
+.dropdownItem {
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 60em) {
+    .hideDesktop {
+        display: none;
+    }
+}
+
+@media (max-width: 60em) {
+    .dropdownWrapper {
+        --popup-width: 160px;
+        left: calc(100% - var(--popup-width)) !important;
+    }
+}

@@ -4,9 +4,11 @@
     --button-primary-active-bg: var(--clr-primary-40);
 
     --button-secondary-bg: rgba(0,0,0,0);
+    --button-secondary-hover-bg: var(--clr-primary-80);
+    --button-secondary-active-bg: var(--clr-primary-70);
 
-    --button-secondary-hover-bg: var(--clr-primary-90);
-    --button-secondary-active-bg: var(--clr-primary-80);
+    --button-normal-bg: var(--clr-primary-80);
+    --button-normal-hover-bg: var(--clr-primary-70);
 
 
     --button-linear-gradient-hover: linear-gradient(0deg, #141414, #141414),
@@ -21,7 +23,7 @@
 
     cursor: pointer;
     transition: background-color 0.125s linear;
-    padding: 0.6em 1em;
+    padding: 8px;
     display: flex;
     align-items: center;
     gap: 0.4em;
@@ -74,4 +76,15 @@
 
 .button.secondary:active {
     background-color: var(--button-secondary-active-bg);
+}
+
+.button.normal {
+    background-color: var(--button-normal-bg);
+    padding-block: 1em;
+    width: 100%;
+    gap: 0.8em;
+}
+
+.button.normal:hover {
+    background-color: var(--button-normal-hover-bg);
 }

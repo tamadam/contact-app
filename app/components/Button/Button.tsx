@@ -1,9 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import styles from "./Button.module.css";
 
-export type ButtonVariant = "priority" | "primary" | "secondary";
+export type ButtonVariant = "priority" | "primary" | "secondary" | "normal";
 
 interface ButtonProps {
   type?: "submit" | "button" | undefined;
@@ -14,28 +14,40 @@ interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({
-  type = "button",
-  variant = "secondary",
-  disabled = false,
-  className,
-  children,
-  onClick,
-}: ButtonProps) => {
-  const buttonStyles = [styles.button, styles[variant], className && className]
-    .filter(Boolean)
-    .join(" ");
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      type = "button",
+      variant = "secondary",
+      disabled = false,
+      className,
+      children,
+      onClick,
+    }: ButtonProps,
+    ref
+  ) => {
+    const buttonStyles = [
+      styles.button,
+      styles[variant],
+      className && className,
+    ]
+      .filter(Boolean)
+      .join(" ");
 
-  return (
-    <button
-      type={type}
-      className={buttonStyles}
-      onClick={onClick}
-      disabled={disabled}
-    >
-      {children}
-    </button>
-  );
-};
+    return (
+      <button
+        type={type}
+        className={buttonStyles}
+        onClick={onClick}
+        disabled={disabled}
+        ref={ref}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";
 
 export default Button;
