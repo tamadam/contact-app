@@ -15,6 +15,10 @@
     align-items: center;
 }
 
+.dropdownItem > button {
+    width: 100%;
+}
+
 @media (min-width: 60em) {
     .hideDesktop {
         display: none;

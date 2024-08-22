@@ -1,4 +1,5 @@
 import Button from "../components/Button/Button";
+import ContactForm from "../components/ContactForm/ContactForm";
 import ContactListItem from "../components/ContactListItem/ContactListItem";
 import styles from "./page.module.css";
 import Image from "next/image";
@@ -102,6 +103,7 @@ export default function ContactsPage() {
           <ContactListItem contactName="Test User4" contactPhone="12345" />
         </div>
       </div>
+      <ContactForm />
     </main>
   );
 }

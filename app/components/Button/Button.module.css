@@ -81,7 +81,6 @@
 .button.normal {
     background-color: var(--button-normal-bg);
     padding-block: 1em;
-    width: 100%;
     gap: 0.8em;
 }
 

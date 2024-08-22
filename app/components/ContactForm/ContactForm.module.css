@@ -1,0 +1,74 @@
+.contactFormWrapper {
+    grid-area: mid;
+    align-self: center;
+    justify-self: center;
+    background: transparent;
+}
+
+.contactFormWrapper::backdrop {
+    background-color: #00000066
+}
+
+.contactForm {
+    --contact-form-width: 360px;
+    background-color: var(--clr-primary-100);
+    border-radius: 8px;
+    width: var(--contact-form-width);
+    color: white;
+    padding: 1.6em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.formTitle {
+    font-family: "Glysa", sans-serif;
+    font-size: 1.6em;
+}
+
+.profilePictureInputWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.formActionButtonsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+
+.inputFieldWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-block: 1em;
+}
+
+.inputLabel {
+    font-size: 0.8em;
+    color: var(--clr-text-56);
+    font-weight: 300;
+    margin-block-end: 0.2em;
+}
+
+.inputField {
+    font-size: 0.9em;
+    color: var(--clr-text-100);
+    background: var(--clr-primary-80);
+    border: 1px solid var(--clr-primary-60);
+    border-radius: 8px;
+    padding: 0.5em 0.8em;
+    outline: none;
+
+}
+
+.inputField::placeholder {
+    color: var(--clr-text-32);
+}
+
+.inputField:focus {
+    border: 1px solid var(--clr-primary-10);
+    background: var(--clr-primary-60);
+}
