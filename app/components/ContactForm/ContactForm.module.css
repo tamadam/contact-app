@@ -72,3 +72,8 @@
     border: 1px solid var(--clr-primary-10);
     background: var(--clr-primary-60);
 }
+
+.profileImageInput {
+    border-radius: 50%;
+    cursor: pointer;
+}

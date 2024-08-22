@@ -1,15 +1,17 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styles from "./ContactForm.module.css";
 import Image from "next/image";
 import Button from "../Button/Button";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormFields, contactFormSchema } from "@/app/validationSchemas";
 
 const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const closeDialog = () => {
     dialogFormRef.current?.close();
@@ -33,6 +35,21 @@ const ContactForm = () => {
     closeDialog();
   };
 
+  const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    let url = null;
+    if (files && files.length > 0) {
+      url = URL.createObjectURL(files[0]);
+      setProfileImage(url);
+    } else {
+      setProfileImage(null);
+    }
+  };
+
+  const triggerFileInputClick = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <>
       <dialog
@@ -48,21 +65,32 @@ const ContactForm = () => {
           <h1 className={styles.formTitle}>Edit contact</h1>
           <div className={styles.profilePictureInputWrapper}>
             <Image
-              src="/images/profile-big.png"
+              src={profileImage || "/images/profile-big.png"}
               alt="profile-picture"
               width={88}
               height={88}
+              className={styles.profileImageInput}
+              onClick={triggerFileInputClick}
             />
-            <Button variant="primary">
-              <Image src="/add.svg" alt="add" width={24} height={24} />{" "}
-              <span>Add picture</span>
-            </Button>
+            <label htmlFor="imageUrl">
+              <Button variant="primary" onClick={triggerFileInputClick}>
+                <Image src="/add.svg" alt="add" width={24} height={24} />{" "}
+                <span>Add picture</span>
+              </Button>
+            </label>
             <input
+              {...register("imageUrl")}
+              ref={fileInputRef}
               type="file"
               accept="image/*"
-              hidden
+              id="imageUrl"
               disabled={isSubmitting}
+              hidden
+              onChange={onImageChange}
             />
+            {errors.imageUrl && (
+              <p className="text-red-500 mt-1">{errors.imageUrl?.message}</p>
+            )}
           </div>
           <div className={styles.normalInputFieldsWrapper}>
             <div className={styles.inputFieldWrapper}>
