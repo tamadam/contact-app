@@ -8,7 +8,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormFields, contactFormSchema } from "@/app/validationSchemas";
 
-const ContactForm = () => {
+interface ContactFormProps {
+  contactData: any; // TODO
+}
+
+const ContactForm = ({ contactData }: ContactFormProps) => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -21,6 +25,7 @@ const ContactForm = () => {
     register,
     handleSubmit,
     reset,
+    /* resetField, */
     formState: { errors, isSubmitting },
   } = useForm<ContactFormFields>({
     resolver: zodResolver(contactFormSchema),
@@ -62,7 +67,9 @@ const ContactForm = () => {
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)} className={styles.contactForm}>
-          <h1 className={styles.formTitle}>Edit contact</h1>
+          <h1 className={styles.formTitle}>
+            {contactData ? "Edit contact" : "Add contact"}
+          </h1>
           <div className={styles.profilePictureInputWrapper}>
             <Image
               src={profileImage || "/images/profile-big.png"}
@@ -73,10 +80,38 @@ const ContactForm = () => {
               onClick={triggerFileInputClick}
             />
             <label htmlFor="imageUrl">
-              <Button variant="primary" onClick={triggerFileInputClick}>
-                <Image src="/add.svg" alt="add" width={24} height={24} />{" "}
-                <span>Add picture</span>
-              </Button>
+              {contactData ? (
+                <div className="flex gap-2 items-center">
+                  <Button variant="primary" onClick={triggerFileInputClick}>
+                    <Image
+                      src="/change.svg"
+                      alt="change"
+                      width={24}
+                      height={24}
+                    />
+                    <span>Change picture</span>
+                  </Button>
+                  <Button
+                    variant="normal"
+                    onClick={() => {
+                      /* resetField("imageUrl");
+                      setProfileImage(null); */
+                    }}
+                  >
+                    <Image
+                      src="/trash.svg"
+                      alt="delete"
+                      width={24}
+                      height={24}
+                    />
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="primary" onClick={triggerFileInputClick}>
+                  <Image src="/add.svg" alt="add" width={24} height={24} />{" "}
+                  <span>Add picture</span>
+                </Button>
+              )}
             </label>
             <input
               {...register("imageUrl")}

@@ -8,6 +8,7 @@ export default function ContactsPage() {
     <main className={styles.contactsWrapper}>
       <ContactsHeader />
       <ContactsContent />
+      <ContactForm contactData={true} />
     </main>
   );
 }
