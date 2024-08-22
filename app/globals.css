@@ -30,6 +30,8 @@
   --clr-text-56: #ffffff8f;
   --clr-text-32: #ffffff52;
 
+  --border-clr: var(--clr-primary-60);
+  --inline-content-padding: 1.4rem;
 
   --page-section-height: 10.6vh;
   --page-section-height-min: 96px;

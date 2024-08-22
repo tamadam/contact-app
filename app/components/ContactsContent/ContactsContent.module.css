@@ -1,0 +1,27 @@
+.contactsContent {
+    --padding-top: 1em;
+    grid-area: mid;
+
+    display: grid;
+    min-height: 100svh;
+    margin-inline: 1em;
+    padding-top: calc(var(--padding-top) + 2 * max(var(--page-section-height), var(--page-section-height-min)));
+    padding-bottom: 2em;
+    padding-inline: var(--inline-content-padding);
+    text-wrap: balance;
+    color: var(--clr-text-100);
+}
+
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6em;
+}
+
+@media (min-width: 60rem) {
+    .contactsContent {
+        margin-inline: var(--inline-space);
+        border-left: 1px solid var(--border-clr);
+        border-right: 1px solid var(--border-clr);
+    }
+}
