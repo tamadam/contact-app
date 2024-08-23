@@ -5,18 +5,13 @@ import styles from "./ContactListItem.module.css";
 import Button from "../Button/Button";
 import ListItemDropdown from "../ListItemDropdown/ListItemDropdown";
 import { useEffect, useRef, useState } from "react";
+import { ContactType } from "@/app/types";
 
 interface ContactListItemProps {
-  contactName: string;
-  contactPhone: string;
-  contactImageUrl?: string;
+  contact: ContactType;
 }
 
-const ContactListItem = ({
-  contactName,
-  contactPhone,
-  contactImageUrl = "",
-}: ContactListItemProps) => {
+const ContactListItem = ({ contact }: ContactListItemProps) => {
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLUListElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -48,15 +43,16 @@ const ContactListItem = ({
     <div className={styles.contactItem}>
       <div className={styles.contactInfo}>
         <Image
-          src={contactImageUrl ? contactImageUrl : "/images/profile-big.png"}
+          /* src={contactImageUrl ? contactImageUrl : "/images/profile-big.png"} */
+          src="/images/profile-big.png"
           alt="profile"
           width={40}
           height={40}
           className={styles.contactImage}
         />
         <div className={styles.contactDetails}>
-          <span className={styles.contactName}>{contactName}</span>
-          <span className={styles.contactPhone}>{contactPhone}</span>
+          <span className={styles.contactName}>{contact.name}</span>
+          <span className={styles.contactPhone}>{contact.phone}</span>
         </div>
       </div>
       <div className={dropdownActionsStyle}>

@@ -22,7 +22,7 @@ export default async function ContactsPage() {
   return (
     <main className={styles.contactsWrapper}>
       <ContactsHeader />
-      <ContactsContent />
+      <ContactsContent contacts={formattedContacts} />
       <ContactForm contactData={true} />
     </main>
   );
