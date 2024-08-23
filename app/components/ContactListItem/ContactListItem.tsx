@@ -71,7 +71,11 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
         </Button>
       </div>
       {isDropdownOpen && (
-        <ListItemDropdown ref={dropdownRef} contact={contact} />
+        <ListItemDropdown
+          ref={dropdownRef}
+          contact={contact}
+          onClick={() => setDropdownOpen(false)}
+        />
       )}
     </div>
   );

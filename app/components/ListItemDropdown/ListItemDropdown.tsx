@@ -9,10 +9,11 @@ import { ContactType } from "@/app/types";
 
 interface ListItemDropdownProps {
   contact: ContactType;
+  onClick: () => void;
 }
 
 const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
-  ({ contact }: ListItemDropdownProps, ref) => {
+  ({ contact, onClick }: ListItemDropdownProps, ref) => {
     const { openDialog } = useContactForm();
 
     return (
@@ -31,7 +32,13 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
         </li>
 
         <li className={styles.dropdownItem}>
-          <Button variant="normal" onClick={() => openDialog("edit", contact)}>
+          <Button
+            variant="normal"
+            onClick={() => {
+              openDialog("edit", contact);
+              onClick();
+            }}
+          >
             <Image src="/settings.svg" alt="edit" width={24} height={24} />
             <span>Edit</span>
           </Button>
