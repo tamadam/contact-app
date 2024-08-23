@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormFields, contactFormSchema } from "@/app/validationSchemas";
 import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
@@ -31,28 +32,56 @@ const ContactForm = () => {
     reset,
     resetField,
     getValues,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormFields>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: activeContact || {
-      name: "",
-      email: "",
-      phone: "",
-    },
   });
+
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
     try {
       console.log(data);
+      const rawImageInput = data.imageUrl?.[0];
+      console.log(rawImageInput);
+      // DELETE PREVIOUS IMAGE - IF NEEDED
+      // TODO
+
+      // UPLOAD IMAGE - IF NEEDED
+      // TODO
+
+      // PREPARE CONTACT DATA TO SAVE IN THE DATABASE
+      // TODO
+      let contactData = { ...data, imageUrl: null };
+
+      // SAVE DATA IN DATABASE
+      const requestUrl = activeContact
+        ? `/api/contacts/${activeContact.id}`
+        : "/api/contacts";
+
+      const requestOptions = {
+        method: activeContact ? "PATCH" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactData),
+      };
+
+      const response = await fetch(requestUrl, requestOptions);
+
+      if (response.ok) {
+        router.refresh();
+        toast.success("Contact created");
+        reset();
+        handleImageDelete();
+        closeDialog();
+      } else {
+        throw new Error();
+      }
     } catch (error) {
       toast.error("Something went wrong");
     }
-    // TODO: submit to server
-    /* console.log("submitting");
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("submitted");
-    reset();
-    closeDialog(); */
   };
 
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {

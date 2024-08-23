@@ -13,6 +13,7 @@ export default async function ContactsPage() {
     name: contact.name,
     email: contact.email,
     phone: contact.phone,
+    imageUrl: contact.imageUrl,
     createdAt: new Date(contact.createdAt),
     updatedAt: new Date(contact.updatedAt),
   }));

@@ -3,6 +3,7 @@ export type RawContactType = {
     name: string;
     email: string;
     phone: string;
+    imageUrl: string | null;
     createdAt: string;
     updatedAt: string;
 }
@@ -12,6 +13,7 @@ export type ContactType = {
     name: string;
     email: string;
     phone: string;
+    imageUrl: string | null;
     createdAt: Date;
     updatedAt: Date;
 }
