@@ -38,6 +38,28 @@
   --inline-space: 20dvw;
   --header-height: calc(2 * max(var(--page-section-height), var(--page-section-height-min)));
 
+
+  /* BUTTON STYLES */
+  --button-primary-bg: var(--clr-primary-60);
+  --button-primary-hover-bg: var(--clr-primary-50);
+  --button-primary-active-bg: var(--clr-primary-40);
+
+  --button-secondary-bg: rgba(0,0,0,0);
+  --button-secondary-hover-bg: var(--clr-primary-80);
+  --button-secondary-active-bg: var(--clr-primary-70);
+
+  --button-normal-bg: var(--clr-primary-80);
+  --button-normal-hover-bg: var(--clr-primary-70);
+
+
+  --button-linear-gradient-hover: linear-gradient(0deg, #141414, #141414),
+  linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%),
+  linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+  
+  --button-linear-gradient-active: linear-gradient(0deg, #141414, #141414),
+  linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%),
+  linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+
 }
 
 

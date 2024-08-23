@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormFields, contactFormSchema } from "@/app/validationSchemas";
 import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
+import toast from "react-hot-toast";
 
 const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
@@ -23,25 +24,35 @@ const ContactForm = () => {
   }, [isDialogOpen]);
 
   const [profileImage, setProfileImage] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const {
     register,
     handleSubmit,
     reset,
-    /* resetField, */
+    resetField,
+    getValues,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormFields>({
     resolver: zodResolver(contactFormSchema),
+    defaultValues: activeContact || {
+      name: "",
+      email: "",
+      phone: "",
+    },
   });
 
   const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
+    try {
+      console.log(data);
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
     // TODO: submit to server
-    console.log("submitting");
+    /* console.log("submitting");
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log("submitted");
     reset();
-    closeDialog();
+    closeDialog(); */
   };
 
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,8 +66,10 @@ const ContactForm = () => {
     }
   };
 
-  const triggerFileInputClick = () => {
-    fileInputRef.current?.click();
+  const handleImageDelete = () => {
+    resetField("imageUrl");
+    setProfileImage(null);
+    /*  reset({ ...getValues(), imageUrl: null }); */
   };
 
   return (
@@ -82,55 +95,59 @@ const ContactForm = () => {
               width={88}
               height={88}
               className={styles.profileImageInput}
-              onClick={triggerFileInputClick}
             />
-            <label htmlFor="imageUrl">
-              {activeContact ? (
-                <div className="flex gap-2 items-center">
-                  <Button variant="primary" onClick={triggerFileInputClick}>
-                    <Image
-                      src="/change.svg"
-                      alt="change"
-                      width={24}
-                      height={24}
-                    />
-                    <span>Change picture</span>
-                  </Button>
-                  <Button
-                    variant="normal"
-                    onClick={() => {
-                      /* resetField("imageUrl");
-                      setProfileImage(null); */
-                    }}
+            <div
+              className={`flex flex-row items-center w-full gap-1 ${
+                activeContact ? "justify-end" : ""
+              }`}
+            >
+              <label htmlFor="imageUrl">
+                {activeContact ? (
+                  <div className="flex gap-2 items-center">
+                    <div className={`${styles.button} ${styles.buttonPrimary}`}>
+                      <Image
+                        src="/change.svg"
+                        alt="change"
+                        width={24}
+                        height={24}
+                      />
+                      <span>Change picture</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className={`${styles.button} ${styles.buttonPrimary} flex items-center`}
                   >
-                    <Image
-                      src="/trash.svg"
-                      alt="delete"
-                      width={24}
-                      height={24}
-                    />
-                  </Button>
+                    <Image src="/add.svg" alt="add" width={24} height={24} />
+                    <span>Add picture</span>
+                  </div>
+                )}
+
+                {errors.imageUrl && (
+                  <p className="text-red-500 mt-1">
+                    {errors.imageUrl?.message}
+                  </p>
+                )}
+              </label>
+
+              <input
+                {...register("imageUrl")}
+                type="file"
+                accept="image/*"
+                id="imageUrl"
+                disabled={isSubmitting}
+                onChange={onImageChange}
+                className="opacity-0 w-0 h-0"
+              />
+              {activeContact && (
+                <div
+                  className={`${styles.button} ${styles.buttonPrimary}`}
+                  onClick={handleImageDelete}
+                >
+                  <Image src="/trash.svg" alt="delete" width={24} height={24} />
                 </div>
-              ) : (
-                <Button variant="primary" onClick={triggerFileInputClick}>
-                  <Image src="/add.svg" alt="add" width={24} height={24} />{" "}
-                  <span>Add picture</span>
-                </Button>
               )}
-            </label>
-            <input
-              {...register("imageUrl")}
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              id="imageUrl"
-              disabled={isSubmitting}
-              hidden
-              onChange={onImageChange}
-            />
-            {errors.imageUrl && (
-              <p className="text-red-500 mt-1">{errors.imageUrl?.message}</p>
-            )}
+            </div>
           </div>
           <div className={styles.normalInputFieldsWrapper}>
             <div className={styles.inputFieldWrapper}>
@@ -144,7 +161,6 @@ const ContactForm = () => {
                 placeholder="Jamie Wright"
                 className={styles.inputField}
                 disabled={isSubmitting}
-                defaultValue={activeContact?.name || ""}
               />
               {errors.name && (
                 <p className="text-red-500 mt-1">{errors.name?.message}</p>
@@ -161,7 +177,6 @@ const ContactForm = () => {
                 placeholder="+01 234 5678"
                 className={styles.inputField}
                 disabled={isSubmitting}
-                defaultValue={activeContact?.phone || ""}
               />
               {errors.phone && (
                 <p className="text-red-500 mt-1">{errors.phone?.message}</p>
@@ -178,7 +193,6 @@ const ContactForm = () => {
                 placeholder="jamie.wright@mail.com"
                 className={styles.inputField}
                 disabled={isSubmitting}
-                defaultValue={activeContact?.email || ""}
               />
               {errors.email && (
                 <p className="text-red-500 mt-1">{errors.email?.message}</p>
