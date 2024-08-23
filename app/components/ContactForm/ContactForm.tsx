@@ -31,12 +31,28 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     resetField,
-    getValues,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormFields>({
     resolver: zodResolver(contactFormSchema),
+    defaultValues: activeContact || {
+      name: "",
+      phone: "",
+      email: "",
+    },
   });
+
+  useEffect(() => {
+    reset({
+      name: "",
+      email: "",
+      phone: "",
+      imageUrl: "",
+    });
+
+    if (formMode === "edit" && activeContact) {
+      reset(activeContact);
+    }
+  }, [formMode, activeContact, reset]);
 
   const router = useRouter();
 
