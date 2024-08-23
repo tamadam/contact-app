@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import styles from "./ListItemDropdown.module.css";
 import Button from "../Button/Button";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
 import { ContactType } from "@/app/types";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Spinner from "../Spinner/Spinner";
 
 interface ListItemDropdownProps {
   contact: ContactType;
@@ -18,11 +19,12 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
   ({ contact, onClick }: ListItemDropdownProps, ref) => {
     const { openDialog } = useContactForm();
 
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
     const handleContactDelete = async () => {
       try {
-        //setIsLoading(true);
+        setIsLoading(true);
 
         if (!contact) throw new Error("No contact available");
 
@@ -45,7 +47,7 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
       } catch (error) {
         toast.error("Delete failed.");
       } finally {
-        //setIsLoading(false);
+        setIsLoading(false);
         onClick();
       }
     };
@@ -53,13 +55,21 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
     return (
       <ul ref={ref} className={styles.dropdownWrapper}>
         <li className={styles.dropdownItem}>
-          <Button variant="normal" className={styles.hideDesktop}>
+          <Button
+            variant="normal"
+            className={styles.hideDesktop}
+            disabled={isLoading}
+          >
             <Image src="/mute.svg" alt="mute" width={24} height={24} />
             <span>Mute</span>
           </Button>
         </li>
         <li className={styles.dropdownItem}>
-          <Button variant="normal" className={styles.hideDesktop}>
+          <Button
+            variant="normal"
+            className={styles.hideDesktop}
+            disabled={isLoading}
+          >
             <Image src="/call.svg" alt="call" width={24} height={24} />
             <span>Call</span>
           </Button>
@@ -72,21 +82,28 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
               openDialog("edit", contact);
               onClick();
             }}
+            disabled={isLoading}
           >
             <Image src="/settings.svg" alt="edit" width={24} height={24} />
             <span>Edit</span>
           </Button>
         </li>
         <li className={styles.dropdownItem}>
-          <Button variant="normal">
+          <Button variant="normal" disabled={isLoading}>
             <Image src="/heart.svg" alt="edit" width={24} height={24} />
             <span>Favourite</span>
           </Button>
         </li>
         <li className={styles.dropdownItem}>
-          <Button variant="normal" onClick={handleContactDelete}>
+          <Button
+            variant="normal"
+            onClick={handleContactDelete}
+            disabled={isLoading}
+          >
             <Image src="/trash.svg" alt="edit" width={24} height={24} />
-            <span>Remove</span>
+            <span className="flex gap-2 items-center">
+              Remove {isLoading && <Spinner />}
+            </span>
           </Button>
         </li>
       </ul>
