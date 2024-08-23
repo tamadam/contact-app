@@ -24,7 +24,9 @@ const ContactForm = () => {
     }
   }, [isDialogOpen]);
 
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [profileImage, setProfileImage] = useState<string | null>(
+    activeContact?.imageUrl ?? null
+  );
 
   const {
     register,
@@ -143,11 +145,11 @@ const ContactForm = () => {
             />
             <div
               className={`flex flex-row items-center w-full gap-1 ${
-                activeContact ? "justify-end" : ""
+                profileImage ? "justify-end" : ""
               }`}
             >
               <label htmlFor="imageUrl">
-                {activeContact ? (
+                {profileImage ? (
                   <div className="flex gap-2 items-center">
                     <div className={`${styles.button} ${styles.buttonPrimary}`}>
                       <Image
@@ -184,7 +186,7 @@ const ContactForm = () => {
                 onChange={onImageChange}
                 className="opacity-0 w-0 h-0"
               />
-              {activeContact && (
+              {profileImage && (
                 <div
                   className={`${styles.button} ${styles.buttonPrimary}`}
                   onClick={handleImageDelete}
