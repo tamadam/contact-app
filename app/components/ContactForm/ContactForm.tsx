@@ -10,6 +10,7 @@ import { ContactFormFields, contactFormSchema } from "@/app/validationSchemas";
 import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Spinner from "../Spinner/Spinner";
 
 const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
@@ -90,7 +91,9 @@ const ContactForm = () => {
 
       if (response.ok) {
         router.refresh();
-        toast.success("Contact created");
+        toast.success(
+          `${activeContact ? "Contact updated" : "Contact created"} `
+        );
         reset();
         handleImageDelete();
         closeDialog();
@@ -255,7 +258,9 @@ const ContactForm = () => {
               Cancel
             </Button>
             <Button variant="normal" type="submit" disabled={isSubmitting}>
-              Done
+              <span className="flex items-center gap-2">
+                Done {isSubmitting && <Spinner />}
+              </span>
             </Button>
           </div>
         </form>
