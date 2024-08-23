@@ -70,7 +70,9 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
           <Image src="/more.svg" alt="more" width={24} height={24} />
         </Button>
       </div>
-      {isDropdownOpen && <ListItemDropdown ref={dropdownRef} />}
+      {isDropdownOpen && (
+        <ListItemDropdown ref={dropdownRef} contact={contact} />
+      )}
     </div>
   );
 };

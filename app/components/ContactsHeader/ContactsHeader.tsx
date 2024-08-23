@@ -1,8 +1,13 @@
+"use client";
+
 import styles from "./ContactsHeader.module.css";
 import Button from "../Button/Button";
 import Image from "next/image";
+import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
 
 const ContactsHeader = () => {
+  const { openDialog } = useContactForm();
+
   return (
     <div className={styles.contactsHeader}>
       <div
@@ -62,7 +67,12 @@ const ContactsHeader = () => {
           </Button>
         </div>
         <div className="addButton">
-          <Button variant="priority">
+          <Button
+            variant="priority"
+            onClick={() => {
+              openDialog("add");
+            }}
+          >
             <Image
               src="/add.svg"
               alt="plus sign"

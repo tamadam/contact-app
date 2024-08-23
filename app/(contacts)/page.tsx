@@ -17,13 +17,11 @@ export default async function ContactsPage() {
     updatedAt: new Date(contact.updatedAt),
   }));
 
-  console.log(formattedContacts);
-
   return (
     <main className={styles.contactsWrapper}>
       <ContactsHeader />
       <ContactsContent contacts={formattedContacts} />
-      <ContactForm contactData={true} />
+      <ContactForm />
     </main>
   );
 }

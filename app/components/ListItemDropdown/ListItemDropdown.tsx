@@ -1,12 +1,20 @@
+"use client";
+
 import { forwardRef } from "react";
 import styles from "./ListItemDropdown.module.css";
 import Button from "../Button/Button";
 import Image from "next/image";
+import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
+import { ContactType } from "@/app/types";
 
-interface ListItemDropdownProps {}
+interface ListItemDropdownProps {
+  contact: ContactType;
+}
 
 const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
-  (props, ref) => {
+  ({ contact }: ListItemDropdownProps, ref) => {
+    const { openDialog } = useContactForm();
+
     return (
       <ul ref={ref} className={styles.dropdownWrapper}>
         <li className={styles.dropdownItem}>
@@ -23,7 +31,7 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
         </li>
 
         <li className={styles.dropdownItem}>
-          <Button variant="normal">
+          <Button variant="normal" onClick={() => openDialog("edit", contact)}>
             <Image src="/settings.svg" alt="edit" width={24} height={24} />
             <span>Edit</span>
           </Button>

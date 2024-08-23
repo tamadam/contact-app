@@ -1,25 +1,29 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ContactForm.module.css";
 import Image from "next/image";
 import Button from "../Button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormFields, contactFormSchema } from "@/app/validationSchemas";
+import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
 
-interface ContactFormProps {
-  contactData: any; // TODO
-}
-
-const ContactForm = ({ contactData }: ContactFormProps) => {
+const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
+  const { isDialogOpen, formMode, activeContact, closeDialog } =
+    useContactForm();
+
+  useEffect(() => {
+    if (isDialogOpen) {
+      dialogFormRef.current?.showModal();
+    } else {
+      dialogFormRef.current?.close();
+    }
+  }, [isDialogOpen]);
+
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  const closeDialog = () => {
-    dialogFormRef.current?.close();
-  };
 
   const {
     register,
@@ -65,10 +69,11 @@ const ContactForm = ({ contactData }: ContactFormProps) => {
             closeDialog();
           }
         }}
+        onClose={closeDialog}
       >
         <form onSubmit={handleSubmit(onSubmit)} className={styles.contactForm}>
           <h1 className={styles.formTitle}>
-            {contactData ? "Edit contact" : "Add contact"}
+            {formMode === "edit" ? "Edit contact" : "Add contact"}
           </h1>
           <div className={styles.profilePictureInputWrapper}>
             <Image
@@ -80,7 +85,7 @@ const ContactForm = ({ contactData }: ContactFormProps) => {
               onClick={triggerFileInputClick}
             />
             <label htmlFor="imageUrl">
-              {contactData ? (
+              {activeContact ? (
                 <div className="flex gap-2 items-center">
                   <Button variant="primary" onClick={triggerFileInputClick}>
                     <Image
@@ -139,6 +144,7 @@ const ContactForm = ({ contactData }: ContactFormProps) => {
                 placeholder="Jamie Wright"
                 className={styles.inputField}
                 disabled={isSubmitting}
+                defaultValue={activeContact?.name || ""}
               />
               {errors.name && (
                 <p className="text-red-500 mt-1">{errors.name?.message}</p>
@@ -155,6 +161,7 @@ const ContactForm = ({ contactData }: ContactFormProps) => {
                 placeholder="+01 234 5678"
                 className={styles.inputField}
                 disabled={isSubmitting}
+                defaultValue={activeContact?.phone || ""}
               />
               {errors.phone && (
                 <p className="text-red-500 mt-1">{errors.phone?.message}</p>
@@ -171,6 +178,7 @@ const ContactForm = ({ contactData }: ContactFormProps) => {
                 placeholder="jamie.wright@mail.com"
                 className={styles.inputField}
                 disabled={isSubmitting}
+                defaultValue={activeContact?.email || ""}
               />
               {errors.email && (
                 <p className="text-red-500 mt-1">{errors.email?.message}</p>
@@ -191,12 +199,6 @@ const ContactForm = ({ contactData }: ContactFormProps) => {
           </div>
         </form>
       </dialog>
-      <button
-        onClick={() => dialogFormRef.current?.showModal()}
-        style={{ color: "white", padding: "2em" }}
-      >
-        Show Form
-      </button>
     </>
   );
 };
