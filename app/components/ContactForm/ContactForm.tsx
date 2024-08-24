@@ -63,14 +63,10 @@ const ContactForm = () => {
 
   const router = useRouter();
 
-  console.log("GETVALUES");
-  console.log(getValues("imageUrl"));
-
   const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
     try {
-      console.log(data);
+      // console.log(data);
       const rawImageInput = data.imageUrl?.[0];
-      console.log(rawImageInput);
 
       // DELETE PREVIOUS IMAGE - IF NEEDED
       // 1. User deleted their profile picture and hasn't uploaded a new one
@@ -79,7 +75,7 @@ const ContactForm = () => {
         (activeContact?.imageUrl && !profileImage) ||
         (activeContact?.imageUrl && activeContact.imageUrl !== profileImage)
       ) {
-        console.log("Image needs to be deleted");
+        // console.log("Image needs to be deleted");
         deleteContactProfileImage(activeContact.imageUrl);
       }
 
@@ -98,7 +94,7 @@ const ContactForm = () => {
 
           if (response.ok) {
             const result = await response.json();
-            console.log("File uploaded successfully", result);
+            //console.log("File uploaded successfully", result);
             imageUrl = result.imageUrl;
           } else {
             console.error("File upload failed", response.statusText);
@@ -111,7 +107,7 @@ const ContactForm = () => {
       // PREPARE CONTACT DATA TO SAVE IN THE DATABASE
       let contactData = { ...data, imageUrl };
 
-      console.log(contactData);
+      //console.log(contactData);
 
       // SAVE DATA IN DATABASE
       const requestUrl = activeContact
