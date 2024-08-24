@@ -43,8 +43,7 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
     <div className={styles.contactItem}>
       <div className={styles.contactInfo}>
         <Image
-          /* src={contactImageUrl ? contactImageUrl : "/images/profile-big.png"} */
-          src="/images/profile-big.png"
+          src={contact.imageUrl || "/images/profile-big.png"}
           alt="profile"
           width={40}
           height={40}

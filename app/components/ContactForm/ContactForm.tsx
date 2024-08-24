@@ -34,6 +34,7 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     resetField,
+    getValues,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormFields>({
     resolver: zodResolver(contactFormSchema),
@@ -49,30 +50,83 @@ const ContactForm = () => {
       name: "",
       email: "",
       phone: "",
-      imageUrl: "",
     });
 
     if (formMode === "edit" && activeContact) {
       reset(activeContact);
     }
+
+    setProfileImage(activeContact?.imageUrl ?? null);
   }, [formMode, activeContact, reset]);
 
   const router = useRouter();
+
+  console.log(getValues("imageUrl"));
 
   const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
     try {
       console.log(data);
       const rawImageInput = data.imageUrl?.[0];
       console.log(rawImageInput);
+
       // DELETE PREVIOUS IMAGE - IF NEEDED
-      // TODO
+      // 1. User deleted their profile picture and hasn't uploaded a new one
+      // 2. User uploaded a new profile picture, replacing the old one
+      if (
+        (activeContact?.imageUrl && !profileImage) ||
+        (activeContact?.imageUrl && activeContact.imageUrl !== profileImage)
+      ) {
+        console.log("Image needs to be deleted");
+        try {
+          const response = await fetch("/api/s3-delete", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ imageUrl: activeContact.imageUrl }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            console.log("Image deleted successfully:", result);
+          } else {
+            console.error("Image deletion failed:", result);
+          }
+        } catch (error) {
+          console.error("Error deleting image:", error);
+        }
+      }
 
       // UPLOAD IMAGE - IF NEEDED
-      // TODO
+      let imageUrl: string | null = null;
+
+      if (rawImageInput) {
+        const formData = new FormData();
+        formData.append("file", rawImageInput);
+
+        try {
+          const response = await fetch("/api/s3-upload", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            console.log("File uploaded successfully", result);
+            imageUrl = result.imageUrl;
+          } else {
+            console.error("File upload failed", response.statusText);
+          }
+        } catch (error) {
+          console.error("An error occurred while uploading the file:", error);
+        }
+      }
 
       // PREPARE CONTACT DATA TO SAVE IN THE DATABASE
-      // TODO
-      let contactData = { ...data, imageUrl: null };
+      let contactData = { ...data, imageUrl };
+
+      console.log(contactData);
 
       // SAVE DATA IN DATABASE
       const requestUrl = activeContact
@@ -119,7 +173,13 @@ const ContactForm = () => {
   const handleImageDelete = () => {
     resetField("imageUrl");
     setProfileImage(null);
-    /*  reset({ ...getValues(), imageUrl: null }); */
+    //reset({ ...getValues(), imageUrl: [] });
+  };
+
+  const onClose = () => {
+    handleImageDelete();
+    reset();
+    closeDialog();
   };
 
   return (
@@ -132,7 +192,7 @@ const ContactForm = () => {
             closeDialog();
           }
         }}
-        onClose={closeDialog}
+        onClose={onClose}
       >
         <form onSubmit={handleSubmit(onSubmit)} className={styles.contactForm}>
           <h1 className={styles.formTitle}>
@@ -172,12 +232,6 @@ const ContactForm = () => {
                     <span>Add picture</span>
                   </div>
                 )}
-
-                {errors.imageUrl && (
-                  <p className="text-red-500 mt-1">
-                    {errors.imageUrl?.message}
-                  </p>
-                )}
               </label>
 
               <input
@@ -199,6 +253,9 @@ const ContactForm = () => {
               )}
             </div>
           </div>
+          {errors.imageUrl && (
+            <p className="text-red-500 mt-1">{errors.imageUrl?.message}</p>
+          )}
           <div className={styles.normalInputFieldsWrapper}>
             <div className={styles.inputFieldWrapper}>
               <label htmlFor="name" className={styles.inputLabel}>
@@ -257,7 +314,7 @@ const ContactForm = () => {
             >
               Cancel
             </Button>
-            <Button variant="normal" type="submit" disabled={isSubmitting}>
+            <Button variant="primary" type="submit" disabled={isSubmitting}>
               <span className="flex items-center gap-2">
                 Done {isSubmitting && <Spinner />}
               </span>

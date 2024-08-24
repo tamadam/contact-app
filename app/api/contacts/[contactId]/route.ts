@@ -66,6 +66,7 @@ export async function PATCH(
                 name: body.name,
                 phone: body.phone,
                 email: body.email,
+                imageUrl: body.imageUrl,
             },
         });
 
