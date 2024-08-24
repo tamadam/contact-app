@@ -1,8 +1,8 @@
-import getContacts from "../actions/getContacts";
-import ContactForm from "../components/ContactForm/ContactForm";
-import ContactsContent from "../components/ContactsContent/ContactsContent";
-import ContactsHeader from "../components/ContactsHeader/ContactsHeader";
-import { ContactType, RawContactType } from "../types";
+import getContacts from "./actions/getContacts";
+import ContactForm from "./components/ContactForm/ContactForm";
+import ContactsContent from "./components/ContactsContent/ContactsContent";
+import ContactsHeader from "./components/ContactsHeader/ContactsHeader";
+import { ContactType, RawContactType } from "./types";
 import styles from "./page.module.css";
 
 export default async function ContactsPage() {
