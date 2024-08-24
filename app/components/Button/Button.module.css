@@ -10,8 +10,8 @@
 
 .button.priority {
     background: 
-    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), 
-    linear-gradient(0deg, #141414, #141414);
+    linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%), 
+    linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100));
 
     border: 1px solid var(--clr-primary-20);
     border-radius: var(--border-radius-large);
@@ -20,16 +20,16 @@
 
 .button.priority:hover {
     background: 
-    linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), 
-    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), 
-    linear-gradient(0deg, #141414, #141414); 
+    linear-gradient(0deg, var(--clr-gradient-faded), var(--clr-gradient-faded)), 
+    linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%), 
+    linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)); 
 }
 
 .button.priority:active {
     background: 
-    linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), 
-    linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%), 
-    linear-gradient(0deg, #141414, #141414); 
+    linear-gradient(0deg, var(--clr-gradient-faded), var(--clr-gradient-faded)), 
+    linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%), 
+    linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)); 
 }
 
 .button.primary {

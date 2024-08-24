@@ -14,7 +14,7 @@
 
 :root {
 
-  /* COLORS */
+  /* COLORS (FALLBACK TO DARK) */
   --clr-primary-100: #141414;
   --clr-primary-90: #191919;
   --clr-primary-80: #1E1E1E;
@@ -29,6 +29,9 @@
   --clr-text-100: #FFFFFF;
   --clr-text-56: #ffffff8f;
   --clr-text-32: #ffffff52;
+
+  --clr-primary-60-faded: #282828b3;
+  --clr-gradient-faded: #ffffff0a;
 
   /* BORDER STYLES */
   --border-radius-normal: 0.5rem;
@@ -58,17 +61,100 @@
   --button-normal-hover-bg: var(--clr-primary-70);
 
 
-  --button-linear-gradient-hover: linear-gradient(0deg, #141414, #141414),
-  linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%),
-  linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+  --button-linear-gradient-hover: linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)),
+  linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%),
+  linear-gradient(0deg, var(--clr-gradient-faded), var(--clr-gradient-faded));
   
-  --button-linear-gradient-active: linear-gradient(0deg, #141414, #141414),
-  linear-gradient(180deg, rgba(40, 40, 40, 0.7) 0%, #282828 100%),
-  linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+  --button-linear-gradient-active: linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)),
+  linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%),
+  linear-gradient(0deg, var(--clr-gradient-faded) var(--clr-gradient-faded));
 
 }
 
+.dark {
+   /* COLORS */
+   --clr-primary-100: #141414;
+   --clr-primary-90: #191919;
+   --clr-primary-80: #1E1E1E;
+   --clr-primary-70: #232323;
+   --clr-primary-60: #282828;
+   --clr-primary-50: #2D2D2D;
+   --clr-primary-40: #323232;
+   --clr-primary-30: #373737;
+   --clr-primary-20: #3C3C3C;
+   --clr-primary-10: #414141;
+ 
+   --clr-text-100: #FFFFFF;
+   --clr-text-56: #ffffff8f;
+   --clr-text-32: #ffffff52;
 
+   --clr-primary-60-faded: #282828b3;
+   --clr-gradient-faded: #ffffff0a;
+
+   --border-clr: var(--clr-primary-60);
+   --border-clr-focus: var(--clr-primary-10);
+
+   --button-primary-bg: var(--clr-primary-60);
+   --button-primary-hover-bg: var(--clr-primary-50);
+   --button-primary-active-bg: var(--clr-primary-40);
+ 
+   --button-secondary-bg: rgba(0,0,0,0);
+   --button-secondary-hover-bg: var(--clr-primary-80);
+   --button-secondary-active-bg: var(--clr-primary-70);
+ 
+   --button-normal-bg: var(--clr-primary-80);
+   --button-normal-hover-bg: var(--clr-primary-70);
+
+   --button-linear-gradient-hover: linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)),
+   linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%),
+   linear-gradient(0deg, var(--clr-gradient-faded), var(--clr-gradient-faded));
+   
+   --button-linear-gradient-active: linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)),
+   linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%),
+   linear-gradient(0deg, var(--clr-gradient-faded) var(--clr-gradient-faded));
+}
+
+.light {
+  --clr-primary-100: #ffffff;
+  --clr-primary-90: #f5f5f5;
+  --clr-primary-80: #eaeaea;
+  --clr-primary-70: #dddddd;
+  --clr-primary-60: #cccccc;
+  --clr-primary-50: #bfbfbf;
+  --clr-primary-40: #a6a6a6;
+  --clr-primary-30: #8f8f8f;
+  --clr-primary-20: #737373;
+  --clr-primary-10: #595959;
+
+  --clr-text-100: #000000;
+  --clr-text-56: #0000008f;
+  --clr-text-32: #00000052;
+
+  --clr-primary-60-faded: #ccccccb3;
+  --clr-gradient-faded: #0000000a;
+
+  --border-clr: var(--clr-primary-60);
+  --border-clr-focus: var(--clr-primary-10);
+
+  --button-primary-bg: var(--clr-primary-60);
+  --button-primary-hover-bg: var(--clr-primary-50);
+  --button-primary-active-bg: var(--clr-primary-40);
+
+  --button-secondary-bg: rgba(0,0,0,0);
+  --button-secondary-hover-bg: var(--clr-primary-80);
+  --button-secondary-active-bg: var(--clr-primary-70);
+
+  --button-normal-bg: var(--clr-primary-80);
+  --button-normal-hover-bg: var(--clr-primary-70);
+
+  --button-linear-gradient-hover: linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)),
+  linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%),
+  linear-gradient(0deg, var(--clr-gradient-faded), var(--clr-gradient-faded));
+  
+  --button-linear-gradient-active: linear-gradient(0deg, var(--clr-primary-100), var(--clr-primary-100)),
+  linear-gradient(180deg, var(--clr-primary-60-faded) 0%, var(--clr-primary-60) 100%),
+  linear-gradient(0deg, var(--clr-gradient-faded) var(--clr-gradient-faded));
+}
 
 /* BASIC CSS RESET */
 
@@ -112,6 +198,10 @@ button {
 
 hr {
   border: none;
+}
+
+svg {
+  fill: currentColor;
 }
 
 @media (prefers-reduced-motion: no-preference) {

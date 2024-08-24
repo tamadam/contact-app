@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ContactFormWrapper from "./providers/ContactForm/ContactFormWrapper";
 import ToastProvider from "./providers/ToastProvider";
+import ThemeContextWrapper from "./providers/ThemeContext/ThemeContextWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ContactFormWrapper>
-          <ToastProvider />
-          {children}
-        </ContactFormWrapper>
+        <ThemeContextWrapper>
+          <ContactFormWrapper>
+            <ToastProvider />
+            {children}
+          </ContactFormWrapper>
+        </ThemeContextWrapper>
       </body>
     </html>
   );

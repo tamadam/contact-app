@@ -4,19 +4,15 @@ import styles from "./ContactsHeader.module.css";
 import Button from "../Button/Button";
 import Image from "next/image";
 import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
+import { useTheme } from "@/app/providers/ThemeContext/ThemeContext";
 
 const ContactsHeader = () => {
   const { openDialog } = useContactForm();
+  const { toggleTheme } = useTheme();
 
   return (
     <div className={styles.contactsHeader}>
-      <div
-        className={[
-          styles.headerItem,
-          styles.headerBackButton,
-          "text-cyan-50",
-        ].join(" ")}
-      >
+      <div className={[styles.headerItem, styles.headerBackButton].join(" ")}>
         <Button variant="square">
           <Image
             src="/backButton.svg"
@@ -27,23 +23,10 @@ const ContactsHeader = () => {
           />
         </Button>
       </div>
-      <div
-        className={[
-          styles.headerItem,
-          styles.headerText,
-          "text-cyan-50",
-          "text-4xl",
-        ].join(" ")}
-      >
+      <div className={[styles.headerItem, styles.headerText].join(" ")}>
         Contacts
       </div>
-      <div
-        className={[
-          styles.headerItem,
-          styles.headerOptions,
-          "text-cyan-50",
-        ].join(" ")}
-      >
+      <div className={[styles.headerItem, styles.headerOptions].join(" ")}>
         <div className="settings">
           <Button variant="square">
             <Image
@@ -84,14 +67,8 @@ const ContactsHeader = () => {
           </Button>
         </div>
       </div>
-      <div
-        className={[
-          styles.headerItem,
-          styles.headerLightDark,
-          "text-cyan-50",
-        ].join(" ")}
-      >
-        <Button variant="square">
+      <div className={[styles.headerItem, styles.headerLightDark].join(" ")}>
+        <Button variant="square" onClick={() => toggleTheme()}>
           <Image
             src="/colorSwitch.svg"
             alt="color switch"
