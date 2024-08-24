@@ -17,7 +17,7 @@ const ContactsHeader = () => {
           "text-cyan-50",
         ].join(" ")}
       >
-        <Button variant="secondary">
+        <Button variant="square">
           <Image
             src="/backButton.svg"
             alt="back button"
@@ -45,7 +45,7 @@ const ContactsHeader = () => {
         ].join(" ")}
       >
         <div className="settings">
-          <Button variant="secondary">
+          <Button variant="square">
             <Image
               src="/settings.svg"
               alt="settings"
@@ -56,7 +56,7 @@ const ContactsHeader = () => {
           </Button>
         </div>
         <div className="profile">
-          <Button variant="secondary">
+          <Button variant="square">
             <Image
               src="/profile.svg"
               alt="profile picture"
@@ -91,7 +91,7 @@ const ContactsHeader = () => {
           "text-cyan-50",
         ].join(" ")}
       >
-        <Button variant="secondary">
+        <Button variant="square">
           <Image
             src="/colorSwitch.svg"
             alt="color switch"

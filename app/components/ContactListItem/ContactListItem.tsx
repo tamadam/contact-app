@@ -37,7 +37,7 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
 
   const dropdownActionsStyle = isDropdownOpen
     ? `${styles.contactActions} ${styles.visible}`
-    : styles.contactActions;
+    : `${styles.contactActions} ${styles.hidden}`;
 
   return (
     <div className={styles.contactItem}>
@@ -55,27 +55,27 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
         </div>
       </div>
       <div className={dropdownActionsStyle}>
-        <Button className={styles.hideMobile}>
+        <Button className={styles.hideMobile} variant="square">
           <Image src="/mute.svg" alt="mute" width={24} height={24} />
         </Button>
-        <Button className={styles.hideMobile}>
+        <Button className={styles.hideMobile} variant="square">
           <Image src="/call.svg" alt="call" width={24} height={24} />
         </Button>
         <Button
-          className={styles.showMobile}
           ref={buttonRef}
+          variant="square"
           onClick={() => setDropdownOpen((prev) => !prev)}
         >
           <Image src="/more.svg" alt="more" width={24} height={24} />
         </Button>
+        {isDropdownOpen && (
+          <ListItemDropdown
+            ref={dropdownRef}
+            contact={contact}
+            onClick={() => setDropdownOpen(false)}
+          />
+        )}
       </div>
-      {isDropdownOpen && (
-        <ListItemDropdown
-          ref={dropdownRef}
-          contact={contact}
-          onClick={() => setDropdownOpen(false)}
-        />
-      )}
     </div>
   );
 };

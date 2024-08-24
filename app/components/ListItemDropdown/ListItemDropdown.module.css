@@ -2,11 +2,11 @@
     --popup-width: 219px;
     z-index: 20;
     position: absolute;
-    left: calc(100% - 40px);
-    top: 100%;
+    left: calc(100% - calc(40px + 0.25rem));
+    top: 115%;
     width: var(--popup-width);
     background: var(--clr-primary-80);
-    border-radius: 0.5em;
+    border-radius: var(--border-radius-normal);
     box-sizing: border-box;
 }
 

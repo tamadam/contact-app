@@ -3,7 +3,12 @@
 import { forwardRef, ReactNode } from "react";
 import styles from "./Button.module.css";
 
-export type ButtonVariant = "priority" | "primary" | "secondary" | "normal";
+export type ButtonVariant =
+  | "priority"
+  | "primary"
+  | "secondary"
+  | "square"
+  | "normal";
 
 interface ButtonProps {
   type?: "submit" | "button" | undefined;

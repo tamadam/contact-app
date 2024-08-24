@@ -3,7 +3,7 @@
     height: 1em;
     border: 0.2em solid #FFF;
     border-bottom-color: transparent;
-    border-radius: 50%;
+    border-radius: var(--border-radius-rounded);
     display: inline-block;
     animation: rotation 1s linear infinite;
 }

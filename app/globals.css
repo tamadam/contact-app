@@ -30,7 +30,13 @@
   --clr-text-56: #ffffff8f;
   --clr-text-32: #ffffff52;
 
+  /* BORDER STYLES */
+  --border-radius-normal: 0.5rem;
+  --border-radius-large: 20rem;
+  --border-radius-rounded: 50%;
   --border-clr: var(--clr-primary-60);
+  --border-clr-focus: var(--clr-primary-10);
+
   --inline-content-padding: 1.4rem;
 
   --page-section-height: 10.6vh;

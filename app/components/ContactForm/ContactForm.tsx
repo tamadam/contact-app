@@ -246,7 +246,7 @@ const ContactForm = () => {
               />
               {profileImage && (
                 <div
-                  className={`${styles.button} ${styles.buttonPrimary}`}
+                  className={`${styles.button} ${styles.buttonSquare}`}
                   onClick={handleImageDelete}
                 >
                   <Image src="/trash.svg" alt="delete" width={24} height={24} />

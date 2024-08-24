@@ -1,11 +1,11 @@
 .button {
     cursor: pointer;
     transition: background-color 0.125s linear;
-    padding: 8px;
+    padding: 0.625rem 1rem;
     display: flex;
     align-items: center;
     gap: 0.4em;
-    border-radius: 0.5em;
+    border-radius: var(--border-radius-normal);
 }
 
 .button.priority {
@@ -14,8 +14,8 @@
     linear-gradient(0deg, #141414, #141414);
 
     border: 1px solid var(--clr-primary-20);
-    border-radius: 20em;
-    
+    border-radius: var(--border-radius-large);
+    padding: 0.625rem 1.2rem 0.625rem 1rem;
 }
 
 .button.priority:hover {
@@ -44,14 +44,21 @@
     background-color: var(--button-primary-active-bg);
 }
 
+.button.square {
+    padding: 0.625rem;
+}
+
+.button.square,
 .button.secondary {
     background-color: var(--button-secondary-bg);
 }
 
+.button.square:hover,
 .button.secondary:hover {
     background-color: var(--button-secondary-hover-bg);
 }
 
+.button.square:active,
 .button.secondary:active {
     background-color: var(--button-secondary-active-bg);
 }

@@ -4,57 +4,64 @@
     justify-content: space-between;
     cursor: pointer;
     position: relative;
+    font-size: 1rem;
 }
 
 .contactInfo {
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
 }
 
 .contactImage {
-    border-radius: 50%;
+    border-radius: var(--border-radius-rounded);
+    max-width: 40px;
+    max-height: 40px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
 }
 
 .contactDetails > * {
-    display: grid;
-    gap: 0.1em;
+    display: block;
 }
 
 .contactName {
     color: var(--clr-text-100);
+    line-height: 1.6;
 }
 
 .contactPhone {
     color: var(--clr-text-56);
+    font-size: 0.75rem;
 }
 
 .contactActions {
     display: flex;
-    gap: 0.2em;
+    gap: 0.2rem;
+    transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 300ms;
+}
+
+.hidden {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity 0.5s ease;
 }
 
-.visible {
-    visibility: visible;
-    opacity: 1;
-}
-
+.visible,
 .contactItem:hover .contactActions {
     visibility: visible;
     opacity: 1;
 }
 
 @media (max-width: 60rem) {
-    .hideMobile {
-        display: none;
-    }
-
     .contactActions {
         display: block;
         visibility: visible;
         opacity: 1;
     }
+   
+    .hideMobile {
+        display: none;
+    }
+
+
 }
