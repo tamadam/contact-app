@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { S3Client, PutObjectCommand, DeleteObjectCommand} from "@aws-sdk/client-s3";
+import { PutObjectCommand} from "@aws-sdk/client-s3";
 import { v4 as uuidv4 } from "uuid";
-
-const s3Client = new S3Client({
-    region: process.env.AWS_S3_REGION!,
-    credentials: {
-        accessKeyId: process.env.AWS_S3_ACCESS_KEY!,
-        secretAccessKey: process.env.AWS_S3_SECRET_KEY!,
-    }
-})
+import { s3Client } from "../s3Client";
 
 export async function POST(request: NextRequest) {
     try {
@@ -39,12 +32,7 @@ export async function POST(request: NextRequest) {
 }
 
 async function uploadFileToS3(file: Buffer, fileName: string, contentType: string) {
-
 	const fileBuffer = file;
-	console.log(fileName);
-	console.log(process.env.AWS_S3_SECRET_KEY)
-	console.log(process.env.AWS_S3_BUCKET_NAME)
-	console.log(process.env.AWS_S3_ACCESS_KEY)
 
 	const params = {
 		Bucket: process.env.AWS_S3_BUCKET_NAME,
