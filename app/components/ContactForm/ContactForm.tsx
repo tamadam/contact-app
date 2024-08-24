@@ -11,6 +11,7 @@ import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Spinner from "../Spinner/Spinner";
+import deleteContactProfileImage from "@/app/actions/removeContactProfilePicture";
 
 const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
@@ -79,25 +80,7 @@ const ContactForm = () => {
         (activeContact?.imageUrl && activeContact.imageUrl !== profileImage)
       ) {
         console.log("Image needs to be deleted");
-        try {
-          const response = await fetch("/api/s3-delete", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ imageUrl: activeContact.imageUrl }),
-          });
-
-          const result = await response.json();
-
-          if (response.ok) {
-            console.log("Image deleted successfully:", result);
-          } else {
-            console.error("Image deletion failed:", result);
-          }
-        } catch (error) {
-          console.error("Error deleting image:", error);
-        }
+        deleteContactProfileImage(activeContact.imageUrl);
       }
 
       // UPLOAD IMAGE - IF NEEDED

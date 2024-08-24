@@ -9,6 +9,7 @@ import { ContactType } from "@/app/types";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Spinner from "../Spinner/Spinner";
+import deleteContactProfileImage from "@/app/actions/removeContactProfilePicture";
 
 interface ListItemDropdownProps {
   contact: ContactType;
@@ -27,6 +28,10 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
         setIsLoading(true);
 
         if (!contact) throw new Error("No contact available");
+
+        if (contact.imageUrl) {
+          deleteContactProfileImage(contact.imageUrl);
+        }
 
         const response = await fetch(`/api/contacts/${contact.id}`, {
           method: "DELETE",
