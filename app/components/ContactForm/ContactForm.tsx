@@ -35,7 +35,6 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     setValue,
-    getValues,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormFields>({
     resolver: zodResolver(contactFormSchema),
@@ -44,7 +43,7 @@ const ContactForm = () => {
       phone: "",
       email: "",
     },
-    reValidateMode: "onSubmit",
+    reValidateMode: "onChange",
   });
 
   useEffect(() => {
