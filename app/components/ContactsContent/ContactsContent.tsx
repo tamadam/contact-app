@@ -10,9 +10,13 @@ const ContactsContent = ({ contacts }: ContactsContentProps) => {
   return (
     <div className={styles.contactsContent}>
       <div className={styles.contactList}>
-        {contacts.map((contact) => (
-          <ContactListItem key={contact.id} contact={contact} />
-        ))}
+        {contacts.length > 0 ? (
+          contacts.map((contact) => (
+            <ContactListItem key={contact.id} contact={contact} />
+          ))
+        ) : (
+          <p>No contacts available</p>
+        )}
       </div>
     </div>
   );
