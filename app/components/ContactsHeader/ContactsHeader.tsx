@@ -5,6 +5,11 @@ import Button from "../Button/Button";
 import Image from "next/image";
 import { useContactForm } from "@/app/providers/ContactForm/ContactFormContext";
 import { useTheme } from "@/app/providers/ThemeContext/ThemeContext";
+import BackButtonIcon from "@/app/icons/BackButtonIcon";
+import SettingsIcon from "@/app/icons/SettingsIcon";
+import ProfileIcon from "@/app/icons/ProfileIcon";
+import AddIcon from "@/app/icons/AddIcon";
+import ColorSwitchIcon from "@/app/icons/ColorSwitchIcon";
 
 const ContactsHeader = () => {
   const { openDialog } = useContactForm();
@@ -14,13 +19,7 @@ const ContactsHeader = () => {
     <div className={styles.contactsHeader}>
       <div className={[styles.headerItem, styles.headerBackButton].join(" ")}>
         <Button variant="square">
-          <Image
-            src="/backButton.svg"
-            alt="back button"
-            width={24}
-            height={24}
-            priority
-          />
+          <BackButtonIcon />
         </Button>
       </div>
       <div className={[styles.headerItem, styles.headerText].join(" ")}>
@@ -29,24 +28,12 @@ const ContactsHeader = () => {
       <div className={[styles.headerItem, styles.headerOptions].join(" ")}>
         <div className="settings">
           <Button variant="square">
-            <Image
-              src="/settings.svg"
-              alt="settings"
-              width={24}
-              height={24}
-              priority
-            />
+            <SettingsIcon />
           </Button>
         </div>
         <div className="profile">
           <Button variant="square">
-            <Image
-              src="/profile.svg"
-              alt="profile picture"
-              width={24}
-              height={24}
-              priority
-            />
+            <ProfileIcon />
           </Button>
         </div>
         <div className="addButton">
@@ -56,26 +43,14 @@ const ContactsHeader = () => {
               openDialog("add");
             }}
           >
-            <Image
-              src="/add.svg"
-              alt="plus sign"
-              width={24}
-              height={24}
-              priority
-            />
+            <AddIcon />
             Add new
           </Button>
         </div>
       </div>
       <div className={[styles.headerItem, styles.headerLightDark].join(" ")}>
         <Button variant="square" onClick={() => toggleTheme()}>
-          <Image
-            src="/colorSwitch.svg"
-            alt="color switch"
-            width={24}
-            height={24}
-            priority
-          />
+          <ColorSwitchIcon />
         </Button>
       </div>
     </div>

@@ -6,6 +6,9 @@ import Button from "../Button/Button";
 import ListItemDropdown from "../ListItemDropdown/ListItemDropdown";
 import { useEffect, useRef, useState } from "react";
 import { ContactType } from "@/app/types";
+import MuteIcon from "@/app/icons/MuteIcon";
+import CallIcon from "@/app/icons/CallIcon";
+import MoreIcon from "@/app/icons/MoreIcon";
 
 interface ContactListItemProps {
   contact: ContactType;
@@ -56,17 +59,17 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
       </div>
       <div className={dropdownActionsStyle}>
         <Button className={styles.hideMobile} variant="square">
-          <Image src="/mute.svg" alt="mute" width={24} height={24} />
+          <MuteIcon />
         </Button>
         <Button className={styles.hideMobile} variant="square">
-          <Image src="/call.svg" alt="call" width={24} height={24} />
+          <CallIcon />
         </Button>
         <Button
           ref={buttonRef}
           variant="square"
           onClick={() => setDropdownOpen((prev) => !prev)}
         >
-          <Image src="/more.svg" alt="more" width={24} height={24} />
+          <MoreIcon />
         </Button>
         {isDropdownOpen && (
           <ListItemDropdown

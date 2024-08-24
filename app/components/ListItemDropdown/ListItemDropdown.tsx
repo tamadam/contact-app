@@ -10,6 +10,11 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Spinner from "../Spinner/Spinner";
 import deleteContactProfileImage from "@/app/actions/removeContactProfilePicture";
+import MuteIcon from "@/app/icons/MuteIcon";
+import CallIcon from "@/app/icons/CallIcon";
+import SettingsIcon from "@/app/icons/SettingsIcon";
+import HeartIcon from "@/app/icons/HeartIcon";
+import TrashIcon from "@/app/icons/TrashIcon";
 
 interface ListItemDropdownProps {
   contact: ContactType;
@@ -65,7 +70,7 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
             className={styles.hideDesktop}
             disabled={isLoading}
           >
-            <Image src="/mute.svg" alt="mute" width={24} height={24} />
+            <MuteIcon />
             <span>Mute</span>
           </Button>
         </li>
@@ -75,7 +80,7 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
             className={styles.hideDesktop}
             disabled={isLoading}
           >
-            <Image src="/call.svg" alt="call" width={24} height={24} />
+            <CallIcon />
             <span>Call</span>
           </Button>
         </li>
@@ -89,13 +94,13 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
             }}
             disabled={isLoading}
           >
-            <Image src="/settings.svg" alt="edit" width={24} height={24} />
+            <SettingsIcon />
             <span>Edit</span>
           </Button>
         </li>
         <li className={styles.dropdownItem}>
           <Button variant="normal" disabled={isLoading}>
-            <Image src="/heart.svg" alt="edit" width={24} height={24} />
+            <HeartIcon />
             <span>Favourite</span>
           </Button>
         </li>
@@ -105,7 +110,7 @@ const ListItemDropdown = forwardRef<HTMLUListElement, ListItemDropdownProps>(
             onClick={handleContactDelete}
             disabled={isLoading}
           >
-            <Image src="/trash.svg" alt="edit" width={24} height={24} />
+            <TrashIcon />
             <span className="flex gap-2 items-center">
               Remove {isLoading && <Spinner />}
             </span>

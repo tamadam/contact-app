@@ -12,6 +12,9 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Spinner from "../Spinner/Spinner";
 import deleteContactProfileImage from "@/app/actions/removeContactProfilePicture";
+import ChangeIcon from "@/app/icons/ChangeIcon";
+import AddIcon from "@/app/icons/AddIcon";
+import TrashIcon from "@/app/icons/TrashIcon";
 
 const ContactForm = () => {
   const dialogFormRef = useRef<HTMLDialogElement | null>(null);
@@ -194,12 +197,7 @@ const ContactForm = () => {
                 {profileImage ? (
                   <div className="flex gap-2 items-center">
                     <div className={`${styles.button} ${styles.buttonPrimary}`}>
-                      <Image
-                        src="/change.svg"
-                        alt="change"
-                        width={24}
-                        height={24}
-                      />
+                      <ChangeIcon />
                       <span>Change picture</span>
                     </div>
                   </div>
@@ -207,7 +205,7 @@ const ContactForm = () => {
                   <div
                     className={`${styles.button} ${styles.buttonPrimary} flex items-center`}
                   >
-                    <Image src="/add.svg" alt="add" width={24} height={24} />
+                    <AddIcon />
                     <span>Add picture</span>
                   </div>
                 )}
@@ -227,7 +225,7 @@ const ContactForm = () => {
                   className={`${styles.button} ${styles.buttonSquare}`}
                   onClick={handleImageDelete}
                 >
-                  <Image src="/trash.svg" alt="delete" width={24} height={24} />
+                  <TrashIcon />
                 </div>
               )}
             </div>
