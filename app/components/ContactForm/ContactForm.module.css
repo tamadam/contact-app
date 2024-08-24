@@ -1,8 +1,10 @@
 .contactFormWrapper {
+    --contact-form-width: 364px;
     grid-area: mid;
     align-self: center;
     justify-self: center;
     background: transparent;
+    width: var(--contact-form-width);
 }
 
 .contactFormWrapper::backdrop {
@@ -10,10 +12,8 @@
 }
 
 .contactForm {
-    --contact-form-width: 364px;
     background-color: var(--clr-primary-100);
     border-radius: var(--border-radius-normal);
-    width: var(--contact-form-width);
     padding: 1.6em;
     color: var(--clr-text-100);
     display: flex;
@@ -28,8 +28,9 @@
 
 .profilePictureInputWrapper {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
     gap: 1em;
     font-size: 14px;
 }

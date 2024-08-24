@@ -189,8 +189,8 @@ const ContactForm = () => {
               className={styles.profileImageInput}
             />
             <div
-              className={`flex flex-row items-center w-full gap-1 ${
-                profileImage ? "justify-end" : ""
+              className={`flex flex-row items-center gap-1 ${
+                profileImage ? "ml-auto" : ""
               }`}
             >
               <label htmlFor="imageUrl">
@@ -203,7 +203,7 @@ const ContactForm = () => {
                   </div>
                 ) : (
                   <div
-                    className={`${styles.button} ${styles.buttonPrimary} flex items-center`}
+                    className={`${styles.button} ${styles.buttonPrimary} flex items-center justify-self-start`}
                   >
                     <AddIcon />
                     <span>Add picture</span>
