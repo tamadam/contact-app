@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     color: var(--clr-text-100);
+    flex-wrap: wrap;
 }
 
 .headerItem:nth-child(3) {

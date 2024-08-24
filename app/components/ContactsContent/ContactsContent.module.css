@@ -10,6 +10,7 @@
     padding-inline: var(--inline-content-padding);
     text-wrap: balance;
     color: var(--clr-text-100);
+    overflow: hidden;
 }
 
 .contactList {
