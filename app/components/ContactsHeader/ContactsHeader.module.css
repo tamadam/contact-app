@@ -61,11 +61,6 @@
         padding: var(--inline-content-padding);
     }
 
-    .headerItem:first-child,
-    .headerItem:last-child {
-        padding: 2rem;
-    }
-
     .headerOptions {
         justify-content: end;
     }
