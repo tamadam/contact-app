@@ -10,7 +10,6 @@
     padding-inline: var(--inline-content-padding);
     text-wrap: balance;
     color: var(--clr-text-100);
-    overflow: hidden;
 }
 
 .contactList {
@@ -24,5 +23,12 @@
         margin-inline: var(--inline-space);
         border-left: 1px solid var(--border-clr);
         border-right: 1px solid var(--border-clr);
+    }
+}
+
+@media (max-width: 280px) {
+    .contactsContent {
+        margin-inline: 0.2em;
+        padding-inline: 0;
     }
 }
