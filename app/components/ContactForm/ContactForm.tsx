@@ -33,7 +33,7 @@ const ContactForm = () => {
     register,
     handleSubmit,
     reset,
-    resetField,
+    setValue,
     getValues,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormFields>({
@@ -43,6 +43,7 @@ const ContactForm = () => {
       phone: "",
       email: "",
     },
+    reValidateMode: "onSubmit",
   });
 
   useEffect(() => {
@@ -61,6 +62,7 @@ const ContactForm = () => {
 
   const router = useRouter();
 
+  console.log("GETVALUES");
   console.log(getValues("imageUrl"));
 
   const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
@@ -171,9 +173,8 @@ const ContactForm = () => {
   };
 
   const handleImageDelete = () => {
-    resetField("imageUrl");
+    setValue("imageUrl", undefined);
     setProfileImage(null);
-    //reset({ ...getValues(), imageUrl: [] });
   };
 
   const onClose = () => {
