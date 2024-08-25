@@ -188,11 +188,7 @@ const ContactForm = () => {
               height={88}
               className={styles.profileImageInput}
             />
-            <div
-              className={`flex flex-row items-center gap-1 ${
-                profileImage ? "ml-auto" : ""
-              }`}
-            >
+            <div className={"flex flex-row items-center gap-1"}>
               <label htmlFor="imageUrl">
                 {profileImage ? (
                   <div className="flex gap-2 items-center">

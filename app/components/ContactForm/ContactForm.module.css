@@ -28,9 +28,10 @@
 
 .profilePictureInputWrapper {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 1em;
     font-size: 14px;
 }
@@ -112,4 +113,13 @@
 
 .buttonSquare {
     padding: 8px;
+}
+
+
+@media (min-width: 420px) {
+    .profilePictureInputWrapper {
+        flex-wrap: nowrap;
+        justify-content: start;
+
+    }
 }
