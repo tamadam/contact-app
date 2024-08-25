@@ -4,9 +4,7 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/contacts`;
 
 const getContacts = async (): Promise<RawContactType[]> => {
   const contacts = await fetch(URL, {
-    next: {
-      revalidate: 0,
-    },
+    cache: "no-cache"
   });
 
   return contacts.json();
