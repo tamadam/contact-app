@@ -9,6 +9,8 @@
 
 Welcome to the Contact App! This application provides a straightforward way to manage your contacts. You can easily create new contacts, edit existing ones, or delete those you no longer need. All your contacts are displayed in a convenient list format for easy viewing. Additionally, you have the option to upload profile pictures, making your contact list more personalized and visually engaging. Perfect for keeping your connections organized and accessible!
 
+You can check out the app at the following link: https://contact-app-one-jade.vercel.app/
+
 ## App Features
 
 * **Create, edit, delete, and view** contacts easily, with **form pre-population** and **validation powered by Zod**
