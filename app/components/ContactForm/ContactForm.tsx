@@ -82,7 +82,7 @@ const ContactForm = () => {
       }
 
       // UPLOAD IMAGE - IF NEEDED
-      let imageUrl: string | null = null;
+      let imageUrl: string | null = profileImage;
 
       if (rawImageInput) {
         const formData = new FormData();
