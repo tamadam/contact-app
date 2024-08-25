@@ -227,7 +227,9 @@ const ContactForm = () => {
             </div>
           </div>
           {errors.imageUrl && (
-            <p className="text-red-500 mt-1">{errors.imageUrl?.message}</p>
+            <p className="text-red-500 mt-1 text-center">
+              {errors.imageUrl?.message}
+            </p>
           )}
           <div className={styles.normalInputFieldsWrapper}>
             <div className={styles.inputFieldWrapper}>
