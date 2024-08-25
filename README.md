@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Table of Contents
 
-## Getting Started
+- [Contact App](#contact-app)
+- [App Features](#app-features)
+- [Screenshots](#screenshots)
+- [Running the Project Locally](#running-the-project-locally)
 
-First, run the development server:
+## Contact App
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Welcome to the Contact App! This application provides a straightforward way to manage your contacts. You can easily create new contacts, edit existing ones, or delete those you no longer need. All your contacts are displayed in a convenient list format for easy viewing. Additionally, you have the option to upload profile pictures, making your contact list more personalized and visually engaging. Perfect for keeping your connections organized and accessible!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## App Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Create, edit, delete, and view** contacts easily, with **form pre-population** and **validation powered by Zod**
+* Upload and store profile pictures in an **Amazon S3** bucket
+* Toggle between **Dark and Light modes**
+* Responsive layout
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Screenshots
+**Home page - Desktop**             |  **Home page - Mobile**
+:-------------------------:|:-------------------------:
+![image](https://github.com/user-attachments/assets/5c4410e5-8320-450b-b851-2ea9564765f9)  |  ![image](https://github.com/user-attachments/assets/565439ce-d655-44e5-8997-f579e465c45a)
 
-## Learn More
+**Light Mode - Desktop**             |  **Light mode - Mobile**
+:-------------------------:|:-------------------------:
+![image](https://github.com/user-attachments/assets/314a5b05-9404-4cd0-b64e-6cb996a48636) | ![image](https://github.com/user-attachments/assets/72129aeb-8891-4aae-a9d2-44e375648b02)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Contact Form - Desktop**             |  **Contact Form - Mobile**
+:-------------------------:|:-------------------------:
+![image](https://github.com/user-attachments/assets/5a3b53a0-8b15-45ed-a2f6-210af413ba6e) | ![image](https://github.com/user-attachments/assets/d9ecf395-794f-41a2-9ba9-aa3e01a37f57)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Running the Project Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The program is deployed to GitHub using a PostgreSQL database. However, you can easily run the project locally using an **SQLite database** by following these steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Clone the repository
+* Make sure you have Node.js and npm installed, then run: **npm install**
+* Set Up the SQLite Database
+  * Locate the **prisma** folder and delete the migrations folder
+  * In the **schema.prisma** file, comment out the PostgreSQL configuration and uncomment the SQLite configuration
+* Run Database Migrations by **npx prisma migrate dev**
+* Create Environment Files:
+  * Create a .env file at the root of the project and add the following variable: ```NEXT_PUBLIC_API_URL="http://localhost:3000/api"```
+  * If you want to enable AWS image upload functionality, you need to set up an S3 bucket. Then, create these variables in the .env file:
+    ```
+    AWS_S3_REGION=""
+    AWS_S3_ACCESS_KEY=""
+    AWS_S3_SECRET_KEY=""
+    AWS_S3_BUCKET_NAME=""
+    ```
+* Start the Development Server: **npm run dev**
+
+
