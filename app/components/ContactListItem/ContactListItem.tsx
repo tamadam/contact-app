@@ -42,6 +42,8 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
     ? `${styles.contactActions} ${styles.visible}`
     : `${styles.contactActions} ${styles.hidden}`;
 
+  const dropdownButtonStyle = isDropdownOpen ? `${styles.activeHover}` : "";
+
   return (
     <div className={styles.contactItem}>
       <div className={styles.contactInfo}>
@@ -68,6 +70,7 @@ const ContactListItem = ({ contact }: ContactListItemProps) => {
           ref={buttonRef}
           variant="square"
           onClick={() => setDropdownOpen((prev) => !prev)}
+          className={dropdownButtonStyle}
         >
           <MoreIcon />
         </Button>

@@ -52,6 +52,10 @@
     opacity: 1;
 }
 
+.activeHover {
+    background-color: var(--button-secondary-hover-bg) !important;
+}
+
 @media (max-width: 60rem) {
     .contactActions {
         display: block;
