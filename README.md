@@ -29,7 +29,7 @@ Potential Improvements:
 ## Used Technologies
 
 - **Next.js**: This application is built with Next.js, utilizing both UI and API routes, and is developed using TypeScript for robust type checking and better developer experience
-- **CSS moduels and Tailwind CSS**: For styling, the project uses a combination of CSS Modules and Tailwind CSS
+- **CSS modules and Tailwind CSS**: For styling, the project uses a combination of CSS Modules and Tailwind CSS
 - **PostgreSQL/SQLite with Prisma**: PostgreSQL is used for production, while SQLite is used for local development, both managed through Prisma ORM for efficient database interactions
 - **Amazon S3**: Utilized for secure storage and retrieval of profile pictures
 - **React Hook Form and Zod**: These libraries are used for form handling and validation, ensuring smooth user input handling and robust form validation
