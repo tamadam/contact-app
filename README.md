@@ -2,6 +2,7 @@
 
 - [Contact App](#contact-app)
 - [App Features](#app-features)
+- [Used Technologies](#used-technologies)
 - [Screenshots](#screenshots)
 - [Running the Project Locally](#running-the-project-locally)
 
@@ -13,10 +14,26 @@ You can check out the app at the following link: https://contact-app-one-jade.ve
 
 ## App Features
 
-* **Create, edit, delete, and view** contacts easily, with **form pre-population** and **validation powered by Zod**
+* **Create, edit, delete, and view** contacts easily, with **form pre-population** and **validation**
 * Upload and store profile pictures in an **Amazon S3** bucket
 * Toggle between **Dark and Light modes**
 * Responsive layout
+
+Potential Improvements:
+* Add User Authentication and Contact Grouping: Enable users to have personalized contact lists, allowing for features like **favorite contacts** and unique settings, such as **mute** or **call** options, and the ability to group contacts into categories for better organization
+* Search and Filter: Implement **search and filter options** to easily find specific contacts based on criteria such as name, email, or phone number
+* Implement Account and App Settings: Provide users with a dedicated **settings page** to manage their account details and customize app preferences
+* Introduce Multiple Pages: Expand **navigation options**, allowing users to move seamlessly between the contacts page and other sections of the app
+* Bug Fixes: Continuously monitor and address any unknown bugs
+
+## Used Technologies
+
+- **Next.js**: This application is built with Next.js, utilizing both UI and API routes, and is developed using TypeScript for robust type checking and better developer experience
+- **CSS moduels and Tailwind CSS**: For styling, the project uses a combination of CSS Modules and Tailwind CSS
+- **PostgreSQL/SQLite with Prisma**: PostgreSQL is used for production, while SQLite is used for local development, both managed through Prisma ORM for efficient database interactions
+- **Amazon S3**: Utilized for secure storage and retrieval of profile pictures
+- **React Hook Form and Zod**: These libraries are used for form handling and validation, ensuring smooth user input handling and robust form validation
+
 
 ## Screenshots
 **Home page - Desktop**             |  **Home page - Mobile**
